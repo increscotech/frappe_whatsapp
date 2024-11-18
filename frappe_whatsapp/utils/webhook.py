@@ -129,6 +129,23 @@ def post():
 
 						message_doc.attach = file.file_url
 						message_doc.save()
+			elif message_type == "location":
+				location_data = message['location']
+				latitude = location_data['latitude']
+				longitude = location_data['longitude']
+				location_message = f"Latitude: {latitude}, Longitude: {longitude}"
+
+				frappe.get_doc({
+					"doctype": "WhatsApp Message",
+					"type": "Incoming",
+					"from": message['from'],
+					"message": location_message,
+					"message_id": message['id'],
+					"content_type": "location",
+     "latitude":latitude,
+     "longitude":longitude,
+     
+				}).insert(ignore_permissions=True)
 			elif message_type == "button":
 				frappe.get_doc({
 					"doctype": "WhatsApp Message",
