@@ -39,6 +39,10 @@ class WhatsAppMessage(Document):
 
             elif self.content_type == "audio":
                 data["text"] = {"link": link}
+            elif self.content_type == "interactive":
+                data["interactive"] =self.message
+                self.interactiveJson=data["interactive"]
+                self.message=json.dumps(data["interactive"])
 
             try:
                 self.notify(data)

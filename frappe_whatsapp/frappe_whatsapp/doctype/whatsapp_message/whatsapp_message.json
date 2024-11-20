@@ -131,7 +131,7 @@
       "fieldname": "content_type",
       "fieldtype": "Select",
       "label": "Content Type",
-      "options": "\ntext\ndocument\nimage\nvideo\naudio\nflow\nreaction\nlocation\ncontact\nbutton",
+      "options": "\ntext\ndocument\nimage\nvideo\naudio\nflow\nreaction\nlocation\ncontact\nbutton\ninteractive",
       "reqd": 1
     },
     {
@@ -147,6 +147,13 @@
       "fieldname": "latitude",
       "fieldtype": "Data",
       "label": "Latitude"
+    },
+    {
+      "allow_in_quick_entry": 1,
+      "depends_on": "eval:(doc.content_type =='interactive')",
+      "fieldname": "interactiveJson",
+      "fieldtype": "JSON",
+      "label": "Interactive JSON"
     },
     {
       "allow_in_quick_entry": 1,

@@ -73,9 +73,10 @@ def post():
 					"doctype": "WhatsApp Message",
 					"type": "Incoming",
 					"from": message['from'],
-					"message": message['interactive']['nfm_reply']['response_json'],
+					"message": json.dumps(message['interactive']),
+     				"interactiveJson": message['interactive'],
 					"message_id": message['id'],
-					"content_type": "flow"
+					"content_type": "interactive"
 				}).insert(ignore_permissions=True)
 			elif message_type in ["image", "audio", "video", "document"]:
 				settings = frappe.get_doc(
